@@ -11,12 +11,23 @@
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics.enable = true;
     nvidia = {
+    # Make sure that if you paste this file you change these to be correct!
+    # https://nixos.wiki/wiki/Nvidia
+
+    prime = {
+
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:0:2";
+    };
             # Modesetting is required.
       modesetting.enable = true;
 
@@ -91,9 +102,6 @@
     layout = "us";
     variant = "";
   };
-  services.spice-vdagentd.enable = true;
-services.qemuGuest.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -178,8 +186,12 @@ services.qemuGuest.enable = true;
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    wget
     jetbrains.rust-rover
+    zed-editor
+    vesktop
+    git
+
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.users.chance = ./home-manager.nix;
