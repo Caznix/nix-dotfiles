@@ -3,13 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, inputs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -178,6 +176,9 @@
 };
   # Install firefox.
   programs.firefox.enable = true;
+  programs.direnv.enableZshIntegration = true;
+  programs.direnv.enable = true;
+  programs.direnv.loadInNixShell = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -185,13 +186,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    nixd
     wget
-    jetbrains.rust-rover
-    zed-editor
-    vesktop
-    git
-
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.users.chance = ./home-manager.nix;
