@@ -188,6 +188,7 @@
   environment.systemPackages = with pkgs; [
     nixd
     wget
+    docker
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.users.chance = ./home-manager.nix;

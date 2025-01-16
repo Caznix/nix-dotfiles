@@ -5,6 +5,7 @@
     imports = [
         ./zsh.nix
         ./ghostty.nix
+        ./vscode.nix
     ];
     home.packages = with pkgs; [
         vim
@@ -33,8 +34,7 @@ in
         cp ${rust-rover}/share/applications/rust-rover.desktop $out/share/applications/
     '';
   })
-
         zed-editor
-        rustup`
+        rustup
     ];
 }
