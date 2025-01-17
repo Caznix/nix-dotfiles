@@ -8,11 +8,13 @@
         ./vscode.nix
     ];
     home.packages = with pkgs; [
+        godot_4
         vim
         firefox
         git
         vesktop
         prismlauncher
+        fastfetch
         (let
   rust-rover = pkgs.jetbrains.rust-rover;
 in
@@ -23,6 +25,14 @@ in
       rustc
       cargo
       stdenv.cc.cc
+      gcc
+      clang
+      llvm
+      clippy
+      cargo-generate
+      nil
+      nixd
+      direnv
     ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     buildInputs = [ rust-rover ] ++ patchInputs;

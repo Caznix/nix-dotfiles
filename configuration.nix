@@ -131,8 +131,12 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
+      kdePackages.kio-fuse #to mount remote filesystems via FUSE
+      kdePackages.kio-extras #extra protocols support (sftp, fish and more)
+      kdePackages.qtsvg
     #  thunderbird
     ];
+
   };
 
   nix = {
@@ -185,14 +189,31 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    nixd
-    wget
-    docker
-  ];
   home-manager.useGlobalPkgs = true;
   home-manager.users.chance = ./home-manager.nix;
   home-manager.useUserPackages = true;
+
+    environment.systemPackages = with pkgs; [
+      nixd
+      wget
+      docker
+      mangohud
+      rar
+      (lutris.override {
+        extraLibraries = pkgs: [
+          jansson
+        ];
+      })
+    ];
+    programs = {
+      steam = {
+        enable = true;
+        gamescopeSession.enable = true;
+      };
+      gamescope.capSysNice = true;
+      gamescope.enable = true;
+      gamemode.enable = true;
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are
