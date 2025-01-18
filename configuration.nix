@@ -203,6 +203,7 @@
   };
 
     environment.systemPackages = with pkgs; [
+      btop
       nixd
       wget
       docker

@@ -24,6 +24,7 @@ home.packages = with pkgs; [
             "$super, Q, killactive"
             "$super,T, exec, ghostty"
             "$super, B,exec,firefox"
+            "$super,F,fullscreen"
             "ALT,SPACE,exec, rofi -show"
              "$super, 1, workspace, 1"
              "$super, 2, workspace, 2"
