@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{...}: { config, pkgs, flake-self, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -94,6 +94,9 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
+  programs.hyprland.xwayland.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -102,7 +105,7 @@
   };
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
+  services.hypridle.enable = true;
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -140,7 +143,7 @@
   };
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = [ "nixpkgs=${flake-self.inputs.nixpkgs}" ];
     package = pkgs.nixVersions.stable;
     extraOptions = ''
       # If set to true, Nix will fall back to building from source if a binary substitute fails.
@@ -190,8 +193,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   home-manager.useGlobalPkgs = true;
-  home-manager.users.chance = ./home-manager.nix;
+  home-manager.users.chance = flake-self.homeConfigurations.chance;
   home-manager.useUserPackages = true;
+  home-manager = {
+    extraSpecialArgs = {
+      inherit flake-self;
+      system-config = config;
+    };
+  };
 
     environment.systemPackages = with pkgs; [
       nixd

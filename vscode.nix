@@ -22,6 +22,7 @@ programs.vscode = {
             gruntfuggly.todo-tree
             mhutchie.git-graph
             fill-labs.dependi
+            bbenoist.nix
             (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
                 mktplcRef = {
                   name = "darcula-solid";
