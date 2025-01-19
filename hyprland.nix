@@ -19,12 +19,17 @@ home.packages = with pkgs; [
         ];
 
         "$super" = "SUPER";
+        "$alt_super" = "CTRL_SUPER";
+
 
         bind = [
             "$super, Q, killactive"
+            "$alt_super,Q,exit"
+
             "$super,T, exec, ghostty"
             "$super, B,exec,firefox"
             "$super,F,fullscreen"
+            "$alt_super,F,togglefloating"
             "ALT,SPACE,exec, rofi -show"
              "$super, 1, workspace, 1"
              "$super, 2, workspace, 2"
@@ -59,7 +64,7 @@ home.packages = with pkgs; [
         ];
         decoration = {
           rounding = 10;
-          shadow.enabled = false;
+          shadow.enabled = true;
           blur = {
             enabled = true;
             size = 6;
@@ -69,7 +74,10 @@ home.packages = with pkgs; [
             xray = true;
           };
         };
-
+        animation = [
+            "windows, 1, 8, default, popin 80%"
+            "layers,1,10,default,popin"
+        ];
         windowrule = [
           "float,title:(PolicyKit1)(.*)$"
           "float,title:^(Bluetooth Devices)$"
@@ -85,8 +93,6 @@ home.packages = with pkgs; [
           "float, title:^(Volume Control)$"
           "size 700 600, title:^(Volume Control)$"
         ];
-
-
     };
  };
 

@@ -9,8 +9,11 @@ programs.ghostty = {
     window-theme = "dark";
     background-opacity = 0.95;
     minimum-contrast = 1.1;
+    window-padding-x = 15;
+    window-padding-y = 15;
     gtk-adwaita = false;
     gtk-titlebar = false;
+
   };
 };
 

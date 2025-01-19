@@ -13,6 +13,7 @@
         ./dunst
     ];
     home.packages = with pkgs; [
+        filezilla
         godot_4
         vim
         firefox
