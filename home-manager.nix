@@ -12,7 +12,13 @@
         ./waybar
         ./dunst
     ];
+    home.sessionVariables = {
+        QT_QPA_PLATFORMTHEME = "qt6ct";
+#        QT_STYLE_OVERRIDE = "kvantum";
+    };
     home.packages = with pkgs; [
+        qt6ct
+        breeze-qt5
         filezilla
         godot_4
         vim

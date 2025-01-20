@@ -9,6 +9,11 @@ home.packages = with pkgs; [
     enable = true;
 
     settings = {
+        general = {
+        resize_on_border = true;        # Enables resizing by dragging window borders
+        extend_border_grab_area = 15;   # Extends the clickable area around the border for resizing
+        hover_icon_on_border = true;    # Shows a cursor icon when
+                };
         exec-once = [
           "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init"
           "${pkgs.networkmanagerapplet}/bin/nm-applet"
